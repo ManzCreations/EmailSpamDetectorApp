@@ -160,10 +160,10 @@ def get_and_filter_emails(mail: imaplib.IMAP4_SSL, usr: str, pw: str, keep_df: p
 if __name__ == "__main__":
     print("------------------------------------------------")
     print("Starting email filter process...")
-    model_path = 'spam_classifier.joblib'
+    model_path = '../models/spam_classifier.joblib'
     model = load_model(model_path, None)  # This will now correctly reference the defined load_model function
 
-    email_info = load_json_file(Path("email_data.json"), None)
+    email_info = load_json_file(Path("../data/email_data.json"), None)
     if email_info:
         user = email_info.get("gmail_personal", {}).get("user")
         password = email_info.get("gmail_personal", {}).get("pass")

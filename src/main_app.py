@@ -9,7 +9,7 @@ import customtkinter as ctk
 import pandas as pd
 from PIL import Image
 
-from main import load_model, load_json_file, get_and_filter_emails, move_email_to_spam
+from src.spam_detector import load_model, load_json_file, get_and_filter_emails, move_email_to_spam
 
 ctk.set_appearance_mode("Dark")  # Default theme
 ctk.set_default_color_theme("dark-blue")
@@ -109,7 +109,7 @@ class SpamDetectorApp(ctk.CTk):
         self.title('Email Spam Detector')
         self.geometry('1300x700')
 
-        self.credentials_file = Path("email_data.json")
+        self.credentials_file = Path("../data/email_data.json")
         self.credentials = self.load_credentials()
 
         # Main layout frames
@@ -207,7 +207,7 @@ class SpamDetectorApp(ctk.CTk):
         self.remove_spam_button.pack(side="right", padx=(5, 0), pady=(10, 0))
 
         # Add an icon to the button
-        img = Image.open("devil-icon.png")
+        img = Image.open("../assets/devil-icon.png")
         self.remove_spam_button.icon = ctk.CTkImage(img)
         self.remove_spam_button.configure(image=self.remove_spam_button.icon, compound="left")
 
@@ -285,14 +285,14 @@ class SpamDetectorApp(ctk.CTk):
     def process_emails(self):
         self.log_to_console("------------------------------------------------")
         self.log_to_console("Starting email filter process...")
-        model_path = 'spam_classifier.joblib'
+        model_path = '../models/spam_classifier.joblib'
         model = load_model(model_path, self.log_to_console)  # Ensure load_model accepts a logging function
 
         # Try to get user and password from GUI inputs
         gui_user = self.email_entry.get().strip()
         gui_password = self.password_entry.get().strip()
 
-        email_info = load_json_file(Path("email_data.json"),
+        email_info = load_json_file(Path("../data/email_data.json"),
                                     self.log_to_console)  # Ensure load_json_file accepts a logging function
 
         user, password = None, None
@@ -324,7 +324,7 @@ class SpamDetectorApp(ctk.CTk):
                 return
 
             # Check for keep_data.csv and update it with the table data
-            keep_data_path = Path("keep_data.csv")
+            keep_data_path = Path("../data/keep_data.csv")
             if keep_data_path.exists():
                 keep_data_df = pd.read_csv(keep_data_path)
             else:
