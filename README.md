@@ -1,6 +1,6 @@
 # EmailSpamDetectorApp
 
-A Python-based email spam detection tool utilizing machine learning for real-time filtering. It features customizable criteria, adaptive learning, and supports dark/light themes.
+A sophisticated email spam detection application that leverages machine learning to filter out unwanted emails. Built with Python, it integrates seamlessly with email servers to process incoming messages in real-time. Features include customizable spam filtering criteria, a user-friendly interface with dark and light themes, and the ability to learn and adapt to new spam patterns over time.
 
 ## Features
 
@@ -46,6 +46,33 @@ Follow the on-screen instructions to configure your email server and specify any
 ![image](https://github.com/ManzCreations/EmailSpamDetectorApp/assets/128404387/caf95fbf-3b8c-4bd8-885c-c0847f54f5b8)
 5. **All Done!!**: Come back tomorrow and the next day to do it again and remove your pesky spam problem.
 ![image](https://github.com/ManzCreations/EmailSpamDetectorApp/assets/128404387/522580fb-4eeb-4b8a-92d9-bfc98cc3ea31)
+
+## Customizing Spam Detection Criteria
+
+To refine spam detection and ensure certain emails are kept, you can create a `keep_data.csv` file in the `data` folder. This CSV file can include keywords, sender addresses, or subjects that you wish to exclude from spam detection. Here's how:
+
+1. **Create `keep_data.csv`**: Navigate to the `data` folder in your EmailSpamDetectorApp directory. Create a new CSV file named `keep_data.csv`.
+
+2. **Add Custom Criteria**: Open `keep_data.csv` in a text editor or spreadsheet software. Add your criteria in the following format:
+
+    ```
+    Keywords,Sender,Subject
+    keyword1,example@domain.com,subject1
+    keyword2,,subject2
+    ,,subject3
+    ```
+
+    - **Keywords**: Any word or phrase you wish to filter out from spam detection.
+    - **Sender**: Specific email addresses that should not be flagged as spam.
+    - **Subject**: Subjects that, when matched, prevent emails from being marked as spam.
+
+3. **Save Changes**: After adding your custom criteria, save `keep_data.csv`.
+
+The EmailSpamDetectorApp will automatically read `keep_data.csv` and apply these criteria during spam detection, ensuring emails that match your specifications are kept.
+
+![image](https://github.com/ManzCreations/EmailSpamDetectorApp/assets/128404387/bfa27ff1-21db-41b2-ae6e-9b41abd8d01d)
+
+This feature allows you to personalize the spam detection process, ensuring important emails remain in your inbox.
 
 ## Contributing
 Contributions to EmailSpamDetectorApp are welcome! Please open an issue or submit a pull request with your proposed changes or improvements.
